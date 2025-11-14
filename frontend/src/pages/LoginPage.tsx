@@ -10,8 +10,8 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const { login: setAuth } = useAuthStore();
   const [formData, setFormData] = useState({
-    email: 'demo@example.com',
-    password: 'Password123!',
+    email: 'admin@example.com',
+    password: 'Admin@123',
   });
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -236,12 +236,6 @@ export const LoginPage = () => {
               </Link>
             </p>
 
-            {/* Demo credentials */}
-            <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 text-center">
-              <p className="text-xs text-slate-400 mb-2">Demo Credentials</p>
-              <p className="text-sm font-mono text-blue-300">demo@example.com</p>
-              <p className="text-sm font-mono text-blue-300">Password123!</p>
-            </div>
           </motion.div>
         </motion.div>
 
