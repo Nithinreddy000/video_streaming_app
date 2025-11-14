@@ -47,7 +47,10 @@ const server = http.createServer(app);
 // Initialize all services
 async function initializeServices() {
   try {
-    console.log('📦 Step 1: Connecting to MongoDB...');
+    console.log('\n📦 Step 1: Connecting to MongoDB...');
+    console.log('   MONGODB_URI configured:', !!process.env.MONGODB_URI);
+    console.log('   JWT secrets configured:', !!(process.env.JWT_ACCESS_SECRET && process.env.JWT_REFRESH_SECRET));
+
     await connectDB();
     console.log('✅ Step 1: MongoDB connected');
 
@@ -134,7 +137,15 @@ async function initializeServices() {
     console.log('✅ All services initialized successfully');
     return { redis, videoQueue, azureServices, io, serviceBusClient };
   } catch (error) {
-    console.error('❌ Service initialization failed:', error);
+    console.error('\n========================================');
+    console.error('❌ SERVICE INITIALIZATION FAILED');
+    console.error('========================================');
+    console.error('Error message:', error.message);
+    console.error('Error name:', error.name);
+    console.error('Error code:', error.code);
+    console.error('Stack trace:');
+    console.error(error.stack);
+    console.error('========================================\n');
     logger.error('Service initialization failed:', error);
     throw error;
   }
@@ -229,27 +240,53 @@ async function startServer() {
     });
 
   } catch (error) {
-    console.error('❌ Failed to start server:');
+    console.error('\n========================================');
+    console.error('❌ FATAL: Failed to start server');
+    console.error('========================================');
     console.error('Error message:', error.message);
     console.error('Error name:', error.name);
     console.error('Error code:', error.code);
-    console.error('Full error:', error);
+    console.error('Stack trace:');
+    console.error(error.stack);
+    console.error('========================================\n');
     logger.error('Failed to start server:', error);
-    process.exit(1);
+
+    // Give logs time to flush before exiting
+    await flushTelemetry();
+    setTimeout(() => {
+      process.exit(1);
+    }, 2000);
   }
 }
 
 // Global error handlers
-process.on('uncaughtException', (error) => {
-  console.error('❌ UNCAUGHT EXCEPTION:', error);
+process.on('uncaughtException', async (error) => {
+  console.error('\n========================================');
+  console.error('❌ UNCAUGHT EXCEPTION');
+  console.error('========================================');
+  console.error('Message:', error.message);
+  console.error('Stack:', error.stack);
+  console.error('========================================\n');
   logger.error('Uncaught Exception:', error);
-  process.exit(1);
+
+  await flushTelemetry();
+  setTimeout(() => process.exit(1), 2000);
 });
 
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('❌ UNHANDLED REJECTION:', reason);
+process.on('unhandledRejection', async (reason, promise) => {
+  console.error('\n========================================');
+  console.error('❌ UNHANDLED PROMISE REJECTION');
+  console.error('========================================');
+  console.error('Reason:', reason);
+  console.error('Promise:', promise);
+  if (reason && reason.stack) {
+    console.error('Stack:', reason.stack);
+  }
+  console.error('========================================\n');
   logger.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  process.exit(1);
+
+  await flushTelemetry();
+  setTimeout(() => process.exit(1), 2000);
 });
 
 // Start the server
