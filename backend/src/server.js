@@ -1,11 +1,33 @@
+console.log('=== STEP 0: Loading dotenv ===');
 require('dotenv').config();
+console.log('✅ Dotenv loaded');
 
-// Initialize Application Insights first (must be before other requires)
-const { initializeAppInsights, flushTelemetry } = require('./config/appinsights');
-initializeAppInsights();
+console.log('=== STEP 1: Checking environment variables ===');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('PORT:', process.env.PORT);
+console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
+console.log('JWT_ACCESS_SECRET exists:', !!process.env.JWT_ACCESS_SECRET);
+console.log('JWT_REFRESH_SECRET exists:', !!process.env.JWT_REFRESH_SECRET);
 
+// DISABLE Application Insights - it's hiding the error
+console.log('=== STEP 2: Skipping Application Insights (disabled for debugging) ===');
+const flushTelemetry = () => Promise.resolve();
+
+console.log('=== STEP 3: Loading HTTP module ===');
 const http = require('http');
-const app = require('./app');
+console.log('✅ HTTP module loaded');
+
+console.log('=== STEP 4: Loading app.js ===');
+let app;
+try {
+  app = require('./app');
+  console.log('✅ app.js loaded successfully');
+} catch (error) {
+  console.error('❌ FATAL: Failed to load app.js');
+  console.error('Error:', error.message);
+  console.error('Stack:', error.stack);
+  process.exit(1);
+}
 const connectDB = require('./config/database');
 const { initializeRedisServices, closeRedisConnections } = require('./config/redis');
 const { initializeAzureServices } = require('./config/azure');
