@@ -1,0 +1,344 @@
+# VideoSentinel Project .gitignore
+
+# ============================================================================
+# DEPENDENCIES
+# ============================================================================
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ============================================================================
+# ENVIRONMENT VARIABLES & SECRETS
+# ============================================================================
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*.local
+
+# Azure credentials
+*.publishsettings
+*.CredentialCache.json
+
+# Secrets and keys
+*.pem
+*.key
+*.cert
+*.crt
+secrets/
+credentials.json
+
+# ============================================================================
+# BUILD OUTPUT
+# ============================================================================
+
+# Backend build
+backend/dist/
+backend/build/
+
+# Frontend build
+frontend/dist/
+frontend/dist-ssr/
+frontend/build/
+frontend/.next/
+frontend/out/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.vite/
+
+# ============================================================================
+# LOGS
+# ============================================================================
+
+# Application logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# Winston logs
+combined.log
+error.log
+exceptions.log
+
+# PM2 logs
+pm2-*.log
+pm2.pid
+
+# ============================================================================
+# OPERATING SYSTEM FILES
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================================
+# IDE & EDITOR FILES
+# ============================================================================
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains IDEs (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+atlassian-ide-plugin.xml
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+.*.sw[a-p]
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ============================================================================
+# TESTING
+# ============================================================================
+
+# Test coverage
+coverage/
+*.lcov
+.nyc_output/
+lib-cov/
+
+# Jest
+jest-results.json
+jest-coverage/
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+
+# Playwright
+playwright-report/
+test-results/
+
+# ============================================================================
+# TEMPORARY FILES
+# ============================================================================
+
+# Temporary directories
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Temporary video processing files
+backend/tmp/
+backend/temp/
+uploads/
+
+# FFmpeg temporary files
+*.part
+*.fftemp
+
+# ============================================================================
+# MEDIA FILES (Optional - Comment out if tracking in repo)
+# ============================================================================
+
+# Video files (large files - use Git LFS if needed)
+# *.mp4
+# *.mov
+# *.avi
+# *.mkv
+# *.webm
+# *.mpeg
+
+# Image thumbnails
+# *.jpg
+# *.jpeg
+# *.png
+# *.gif
+
+# ============================================================================
+# DATABASE & CACHE
+# ============================================================================
+
+# MongoDB dumps
+*.dump
+dump/
+
+# Redis dumps
+dump.rdb
+appendonly.aof
+
+# SQLite
+*.sqlite
+*.sqlite3
+*.db
+
+# ============================================================================
+# DOCKER
+# ============================================================================
+
+# Docker files (optional)
+# docker-compose.override.yml
+# .dockerignore
+
+# ============================================================================
+# MISC
+# ============================================================================
+
+# TypeScript
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variable files
+.env.test
+
+# Storybook build outputs
+.out
+.storybook-out
+storybook-static
+
+# Rollup cache
+.rollup.cache/
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Temporary folders
+tmp/
+temp/
+
+# ============================================================================
+# PROJECT SPECIFIC
+# ============================================================================
+
+# Bull Queue jobs (Redis)
+.bull/
+
+# Video processing queue
+processing-queue/
+
+# Uploaded files (if not using cloud storage for dev)
+# uploads/
+# public/uploads/
+
+# Generated documentation
+docs/generated/
+
+# API documentation
+api-docs/
+
+# Backup files
+*.bak
+*.backup
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ============================================================================
+# SECURITY
+# ============================================================================
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# GPG keys
+*.gpg
+*.asc
+
+# Certificate files
+*.p12
+*.pfx
+
+# ============================================================================
+# END OF .gitignore
+# ============================================================================

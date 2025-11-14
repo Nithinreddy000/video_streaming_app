@@ -1,0 +1,11 @@
+export { UploadPage } from './UploadPage';
+export { LibraryPage } from './LibraryPage';
+export { VideoDetailPage } from './VideoDetailPage';
+export { DashboardPage } from './DashboardPage';
+export { AdminModerationPage } from './AdminModerationPage';
+export { LoginPage } from './LoginPage';
+export { RegisterPage } from './RegisterPage';
+export { OrganizationsPage } from './OrganizationsPage';
+export { UsersPage } from './UsersPage';
+export { InvitationsPage } from './InvitationsPage';
+export { AcceptInvitationPage } from './AcceptInvitationPage';
