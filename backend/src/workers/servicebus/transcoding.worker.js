@@ -23,7 +23,7 @@ try {
 let Video = null;
 const getVideoModel = () => {
   if (!Video) {
-    Video = require('../../models/Video.model');
+    Video = require('../../models/video.model');
   }
   return Video;
 };
