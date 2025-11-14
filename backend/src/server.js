@@ -1,8 +1,11 @@
 require('dotenv').config();
 
+// TEMPORARILY DISABLED to see actual errors
 // Initialize Application Insights first (must be before other requires)
-const { initializeAppInsights, flushTelemetry } = require('./config/appinsights');
-initializeAppInsights();
+// const { initializeAppInsights, flushTelemetry } = require('./config/appinsights');
+// initializeAppInsights();
+const flushTelemetry = () => Promise.resolve(); // Mock flush function
+console.log('⚠️  Application Insights DISABLED for debugging');
 
 const http = require('http');
 const app = require('./app');
