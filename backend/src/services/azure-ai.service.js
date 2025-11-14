@@ -5,6 +5,14 @@ const ffmpeg = require('fluent-ffmpeg');
 const path = require('path');
 const fs = require('fs').promises;
 
+// Set FFmpeg path explicitly for Alpine Linux
+try {
+  ffmpeg.setFfmpegPath('/usr/bin/ffmpeg');
+  ffmpeg.setFfprobePath('/usr/bin/ffprobe');
+} catch (error) {
+  logger.warn('FFmpeg path configuration warning:', error.message);
+}
+
 /**
  * Azure AI Content Safety Service
  *
